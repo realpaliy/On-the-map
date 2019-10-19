@@ -45,23 +45,42 @@
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Il-ly-ZlS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZW1-5T-Uhb">
+                                <rect key="frame" x="77" y="544" width="179" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-Zb-ToT">
+                                <rect key="frame" x="259" y="538" width="66" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WNS-EO-3Vw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S54-E5-ggM" firstAttribute="top" secondItem="L8w-1R-Yxz" secondAttribute="bottom" constant="8" id="9YT-bk-hFv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="56O-XS-wtU" secondAttribute="bottom" constant="326" id="CdV-dZ-SKP"/>
+                            <constraint firstItem="ZW1-5T-Uhb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77" id="EFv-VQ-kGf"/>
                             <constraint firstItem="L8w-1R-Yxz" firstAttribute="leading" secondItem="mRb-cW-e6i" secondAttribute="leading" id="VET-jq-8vD"/>
                             <constraint firstItem="KJc-Yf-aFw" firstAttribute="top" secondItem="mRb-cW-e6i" secondAttribute="bottom" constant="8" symbolic="YES" id="YQv-Hm-oMi"/>
                             <constraint firstItem="L8w-1R-Yxz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="112" id="aDB-Mw-nFd"/>
+                            <constraint firstItem="ZW1-5T-Uhb" firstAttribute="top" secondItem="56O-XS-wtU" secondAttribute="bottom" constant="8" id="b3j-Cj-6gw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mRb-cW-e6i" secondAttribute="trailing" symbolic="YES" id="c8x-JC-Z4w"/>
                             <constraint firstItem="56O-XS-wtU" firstAttribute="top" secondItem="KJc-Yf-aFw" secondAttribute="bottom" constant="25" id="dFq-RD-nN6"/>
                             <constraint firstItem="L8w-1R-Yxz" firstAttribute="leading" secondItem="S54-E5-ggM" secondAttribute="leading" id="ien-e7-SY0"/>
                             <constraint firstItem="56O-XS-wtU" firstAttribute="centerX" secondItem="S54-E5-ggM" secondAttribute="centerX" id="irG-4w-bB9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ugf-Zb-ToT" secondAttribute="trailing" constant="89" id="itK-Vi-OnA"/>
                             <constraint firstItem="L8w-1R-Yxz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="285" id="lgK-nN-1qH"/>
                             <constraint firstItem="L8w-1R-Yxz" firstAttribute="leading" secondItem="KJc-Yf-aFw" secondAttribute="leading" id="lzk-nU-AmW"/>
                             <constraint firstItem="56O-XS-wtU" firstAttribute="centerX" secondItem="KJc-Yf-aFw" secondAttribute="centerX" id="rJs-LR-9ov"/>
                             <constraint firstItem="56O-XS-wtU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sdz-ap-dRU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="L8w-1R-Yxz" secondAttribute="trailing" symbolic="YES" id="xNb-P1-zJV"/>
+                            <constraint firstItem="Ugf-Zb-ToT" firstAttribute="top" secondItem="KJc-Yf-aFw" secondAttribute="bottom" constant="57" id="xhE-Fz-nF1"/>
+                            <constraint firstItem="Ugf-Zb-ToT" firstAttribute="leading" secondItem="ZW1-5T-Uhb" secondAttribute="trailing" constant="3" id="xmc-RK-1bx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -217,7 +236,6 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KL5-Xq-D6y"/>
                                     <barButtonItem title="Cancel" id="M6K-eN-Rb6">
                                         <connections>
                                             <action selector="cancelButtonPressed:" destination="ypi-8i-HFo" id="OOw-rX-0U7"/>
@@ -284,7 +302,6 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoW-pL-Vdx">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8fk-en-MoP"/>
                                     <barButtonItem title="Cancel" id="juA-nI-YEr">
                                         <connections>
                                             <action selector="cancelButtonPressed:" destination="Ejn-Kt-q34" id="fwp-6a-m5h"/>
@@ -331,7 +348,13 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilj-cd-F88">
                                 <rect key="frame" x="0.0" y="56" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem image="mappin.and.ellipse" catalog="system" id="4VC-Xi-iCZ">
+                                    <barButtonItem title="Logout" id="RNy-Do-tOd">
+                                        <connections>
+                                            <action selector="logoutPressed:" destination="kzS-Tk-n0r" id="Dea-Uj-pny"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8cV-6V-Vc2"/>
+                                    <barButtonItem image="plus" catalog="system" id="4VC-Xi-iCZ">
                                         <connections>
                                             <action selector="mapPinPressed:" destination="kzS-Tk-n0r" id="GeI-kd-cNR"/>
                                         </connections>
@@ -366,6 +389,6 @@
         <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="map" catalog="system" width="64" height="56"/>
         <image name="mappin" catalog="system" width="52" height="64"/>
-        <image name="mappin.and.ellipse" catalog="system" width="58" height="64"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
 </document>

@@ -13,13 +13,19 @@ extension UITableViewController{
     func showURLError(_ message: String){
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert,animated: true)
+        DispatchQueue.main.async {
+            self.present(alert,animated: true)
+        }
     }
     
 }
 
 extension UIViewController{
-    func showError(_ message: String){
-        
+    func showError(_ title: String,_ message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert,animated: true)
+        }
     }
 }

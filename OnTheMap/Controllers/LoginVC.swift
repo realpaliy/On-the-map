@@ -34,8 +34,16 @@ class LoginVC: UIViewController {
                     }
                 }
             }
+        }else{
+            showError("Login Failed",error?.localizedDescription ?? "")
+            print("Hi")
         }
     
     }
     
+    @IBAction func signUpButton(_ sender: Any) {
+    
+        UIApplication.shared.open(URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com/authenticated")!)
+    
+    }
 }

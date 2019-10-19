@@ -82,5 +82,14 @@ class MapVC: UIViewController, MKMapViewDelegate {
         present(controller, animated: true, completion: nil)
     
     }
+    @IBAction func logoutPressed(_ sender: Any) {
+    
+        MapClient.logout { (success, error) in
+            if success{
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+    }
     
 }

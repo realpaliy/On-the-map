@@ -24,6 +24,7 @@ class MapClient {
         case postStudentLocation
         case putStudentLocation(String)
         case getUserUpdate
+        case logout
 
         var stringValue: String{
             switch self {
@@ -32,7 +33,8 @@ class MapClient {
             case .postStudentLocation: return Endpoints.base + "/StudentLocation"
             case .putStudentLocation(let object): return Endpoints.base + "StudentLocation/\(object)"
             case .getUserUpdate: return Endpoints.base + "/users/\(Auth.accountId)"
-            
+            case .logout: return Endpoints.base + "/session"
+                
             }
         }
         
@@ -70,6 +72,7 @@ class MapClient {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
         
@@ -81,14 +84,22 @@ class MapClient {
                 return
             }
             let decoder = JSONDecoder()
+            let newData = data.subdata(in: 5..<data.count)
             do{
-                let response = try decoder.decode(decodable.self, from: data)
+                let response = try decoder.decode(decodable.self, from: newData)
                 DispatchQueue.main.async {
                     completion(response, nil)
                 }
             }catch{
-                DispatchQueue.main.async {
-                    completion(nil, error)
+                do{
+                    let responseObject = try decoder.decode(StatusResponse.self, from: newData)
+                    DispatchQueue.main.async {
+                        completion(nil, responseObject)
+                    }
+                }catch{
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
                 }
             }
         }
@@ -98,30 +109,17 @@ class MapClient {
     
     class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
         
-        var request = URLRequest(url: Endpoints.login.url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let body = LoginRequest(udacity: LoginCredentials(username: username, password: password))
-        request.httpBody = try! JSONEncoder().encode(body)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
-                completion(false, error)
-                return
-            }
-            let newData = data.subdata(in: 5..<data.count)
-            let decoder = JSONDecoder()
-            do{
-                let response = try decoder.decode(LoginResponse.self, from: newData)
+        taskPostRequest(url: Endpoints.login.url, body: body, decodable: LoginResponse.self) { (response, error) in
+            if let response = response{
                 Auth.sessionId = response.session.id
                 Auth.accountId = response.account.key
                 completion(true,nil)
-            }catch{
+            }else{
                 completion(false, error)
             }
         }
-        task.resume()
+        
     }
     
     class func getStudentInformation(completion: @escaping ([StudentInformation], Error?) -> Void){
@@ -133,7 +131,6 @@ class MapClient {
                 completion([], error)
             }
         }
-        
     }
     
     class func postStudentLocation(postData: StudentInformation,completion: @escaping (PostSLResponse?, Error?) -> Void){
@@ -190,6 +187,33 @@ class MapClient {
                 completion(responseObject, nil)
             }catch{
                 completion(nil, error)
+            }
+        }
+        task.resume()
+    }
+    
+    class func logout(completion: @escaping (Bool, Error?) -> Void){
+        
+        var request = URLRequest(url: Endpoints.logout.url)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if data != nil {
+                Auth.sessionId = ""
+                DispatchQueue.main.async {
+                    completion(true,nil)
+                }
+            }else{
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
             }
         }
         task.resume()

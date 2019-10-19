@@ -24,6 +24,7 @@ class AddNewLocationVC: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
+        checkTF()
         let location = locationTF.text!
         let name = "\(firstNameTF.text!) \(lastNameTF.text!)"
         let geocoder = CLGeocoder()
@@ -51,4 +52,17 @@ class AddNewLocationVC: UIViewController {
         dismiss(animated: true, completion: nil)
     
     }
+    
+    func checkTF(){
+        if firstNameTF.text!.isEmpty{
+            showError("Error","Enter your first name")
+        }else if lastNameTF.text!.isEmpty{
+            showError("Error","Enter your last name")
+        }else if locationTF.text!.isEmpty{
+            showError("Error","Enter location")
+        }else if urlText.text!.isEmpty{
+            showError("Error","Enter your URL")
+        }
+    }
+    
 }
