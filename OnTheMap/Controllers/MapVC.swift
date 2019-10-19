@@ -28,7 +28,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
 
-    func handleStudentLocationResponse(locations: [StudentLocation], error: Error?){
+    func handleStudentLocationResponse(locations: [StudentInformation], error: Error?){
         
         for dictionary in locations{
             let lat = CLLocationDegrees(dictionary.latitude as Double)
@@ -78,7 +78,8 @@ class MapVC: UIViewController, MKMapViewDelegate {
     
     @IBAction func mapPinPressed(_ sender: Any) {
     
-        
+        let controller = storyboard?.instantiateViewController(identifier: "NewPinController") as! AddNewLocationVC
+        present(controller, animated: true, completion: nil)
     
     }
     

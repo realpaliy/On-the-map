@@ -20,17 +20,19 @@ class MapClient {
         static let base = "https://onthemap-api.udacity.com/v1"
         
         case login
-        case getStudentLocation
+        case getStudentInformation
         case postStudentLocation
         case putStudentLocation(String)
-        
+        case getUserUpdate
+
         var stringValue: String{
             switch self {
             case .login: return Endpoints.base + "/session"
-            case .getStudentLocation: return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
+            case .getStudentInformation: return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
             case .postStudentLocation: return Endpoints.base + "/StudentLocation"
-            case .putStudentLocation(let objectId): return Endpoints.base + "StudentLocation/\(objectId)"
-                
+            case .putStudentLocation(let object): return Endpoints.base + "StudentLocation/\(object)"
+            case .getUserUpdate: return Endpoints.base + "/users/\(Auth.accountId)"
+            
             }
         }
         
@@ -122,9 +124,9 @@ class MapClient {
         task.resume()
     }
     
-    class func getStudentInformation(completion: @escaping ([StudentLocation], Error?) -> Void){
+    class func getStudentInformation(completion: @escaping ([StudentInformation], Error?) -> Void){
         
-        taskGetRequest(url: Endpoints.getStudentLocation.url, decodable: StudentResponse.self) { (response, error) in
+        taskGetRequest(url: Endpoints.getStudentInformation.url, decodable: StudentResponse.self) { (response, error) in
             if let response = response {
                 completion(response.results, nil)
             }else{
@@ -134,41 +136,63 @@ class MapClient {
         
     }
     
-    class func postStudentLocation(studentInfo: StudentLocation, completiong: @escaping (Bool, Error?) -> Void ){
+    class func postStudentLocation(postData: StudentInformation,completion: @escaping (Bool, Error?) -> Void){
      
-        let body = studentInfo
-        taskPostRequest(url: Endpoints.postStudentLocation.url, body: body, decodable: SLResponse.self) { (response, error) in
-            if let response = response {
-                StudentInfo.studentInfo.createdAt = response.createdAt
-                StudentInfo.studentInfo.objectId = response.objectId
-                
+        let body = postData
+        taskPostRequest(url: Endpoints.postStudentLocation.url, body: body, decodable: PostSLResponse.self) { (response, error) in
+            if let response = response{
+                PostedLocation.postedLocation.createdAt = response.createdAt
+                PostedLocation.postedLocation.createdAt = response.objectId
+                completion(true,nil)
+            }else{
+                print("ERROR IN POST SL")
+                completion(false, error)
             }
         }
         
     }
     
-    class func putStudentLocation(objectId: String, completion: @escaping (Bool, Error?) -> Void){
-     
+    class func putStudentLocation(objectId: String, data: StudentInformation, completion: @escaping (Bool, Error?) -> Void){
+        
         var request = URLRequest(url: Endpoints.putStudentLocation(objectId).url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body = StudentInfo.studentInfo
+        let body = data
         request.httpBody = try! JSONEncoder().encode(body)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 completion(false, error)
-                print("Error #1")
                 return
             }
             let decoder = JSONDecoder()
             do{
-                let response = try decoder.decode(PutSLResponse.self, from: data)
-                UpdateInformation.updateInformation.updatedAt = response.updatedAt
+                let responseObject = try decoder.decode(PutSLResponse.self, from: data)
+                PutSLUpdated.putSLUpdated.updatedAt = responseObject.updatedAt
                 completion(true,nil)
             }catch{
                 completion(false, nil)
-                print("Error here")
+                print("ERROR IN PUT SL")
+            }
+        }
+        task.resume()
+    }
+    
+    class func updateUser(completion: @escaping (UserUpdate?, Error?) -> Void){
+        
+        let task = URLSession.shared.dataTask(with: Endpoints.getUserUpdate.url) { (data, response, error) in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            let decoder = JSONDecoder()
+            let newData = data.subdata(in: 5..<data.count)
+            do{
+                let responseObject = try decoder.decode(UserUpdate.self, from: newData)
+                print(responseObject.firstName)
+                completion(responseObject, nil)
+            }catch{
+                completion(nil, error)
             }
         }
         task.resume()

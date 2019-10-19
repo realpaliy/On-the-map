@@ -28,6 +28,11 @@ class LoginVC: UIViewController {
             print(MapClient.Auth.sessionId)
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginComplete", sender: nil)
+                MapClient.updateUser { (response, error) in
+                    if let response = response {
+                        print(response)
+                    }
+                }
             }
         }
     

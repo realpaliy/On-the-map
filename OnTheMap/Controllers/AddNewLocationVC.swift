@@ -7,22 +7,28 @@
 //
 
 import UIKit
+import MapKit
 
 class AddNewLocationVC: UIViewController {
 
-    @IBOutlet weak var firstNameTF: UITextField!
-    @IBOutlet weak var lastNameTF: UITextField!
-    @IBOutlet weak var urlTF: UITextField!
     @IBOutlet weak var locationTF: UITextField!
-    @IBOutlet weak var buttonOutlet: UIButton!
+    let annotation = MKPointAnnotation()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+            
     }
-
     
     @IBAction func buttonPressed(_ sender: Any) {
+        let location = locationTF.text!
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(location) { (placerMark, error) in
+            if let mark = placerMark?[0]{
+                self.annotation.coordinate = (mark.location?.coordinate)!
+                self.annotation.title = location
+            }
+        }
+        
     }
+    
     
 }
