@@ -13,9 +13,8 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
 
     var location: MKPointAnnotation!
     
-    var selectedLocation: StudentInformation!
+    var newLocation: StudentInformation!
     
-    @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +27,27 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
             region.span.longitudeDelta = 0.05
             mapView.setRegion(region, animated: true)
             mapView.addAnnotation(location)
+            
         }
         
     }
 
     @IBAction func buttonPressed(_ sender: Any) {
     
-        MapClient.postStudentLocation(postData: selectedLocation) { (success, error) in
-            if success{
-                self.dismiss(animated: true, completion: nil)
+        MapClient.postStudentLocation(postData: newLocation) { (data, error) in
+            if let data = data{
+                self.newLocation.createdAt = data.createdAt
+                self.newLocation.objectId = data.objectId
+                let controller = self.storyboard?.instantiateViewController(identifier: "MapViewController") as! MapVC
+                self.present(controller,animated: true, completion: nil)
             }
         }
         
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+    
+        dismiss(animated: true, completion: nil)
+        
+    }
 }

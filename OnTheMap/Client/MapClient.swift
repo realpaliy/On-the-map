@@ -136,17 +136,15 @@ class MapClient {
         
     }
     
-    class func postStudentLocation(postData: StudentInformation,completion: @escaping (Bool, Error?) -> Void){
+    class func postStudentLocation(postData: StudentInformation,completion: @escaping (PostSLResponse?, Error?) -> Void){
      
         let body = postData
         taskPostRequest(url: Endpoints.postStudentLocation.url, body: body, decodable: PostSLResponse.self) { (response, error) in
             if let response = response{
-                PostedLocation.postedLocation.createdAt = response.createdAt
-                PostedLocation.postedLocation.createdAt = response.objectId
-                completion(true,nil)
+                completion(response,nil)
             }else{
                 print("ERROR IN POST SL")
-                completion(false, error)
+                completion(nil, error)
             }
         }
         
@@ -189,7 +187,6 @@ class MapClient {
             let newData = data.subdata(in: 5..<data.count)
             do{
                 let responseObject = try decoder.decode(UserUpdate.self, from: newData)
-                print(responseObject.firstName)
                 completion(responseObject, nil)
             }catch{
                 completion(nil, error)

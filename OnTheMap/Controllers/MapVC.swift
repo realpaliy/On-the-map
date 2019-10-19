@@ -17,9 +17,9 @@ class MapVC: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         if StudentLocationModel.studentLocations.isEmpty{
             getLocation()
-            mapView.delegate = self
         }
     }
     
