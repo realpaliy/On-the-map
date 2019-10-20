@@ -40,6 +40,8 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
                 self.newLocation.objectId = data.objectId
                 let controller = self.storyboard?.instantiateViewController(identifier: "MapViewController") as! MapVC
                 self.present(controller,animated: true, completion: nil)
+            }else{
+                print("Error")
             }
         }
         

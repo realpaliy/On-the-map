@@ -74,7 +74,7 @@ class StudentListVC: UITableViewController {
     
         MapClient.logout { (success, error) in
             if success{
-                self.dismiss(animated: true, completion: nil)
+                self.showLogout()
             }
         }
     

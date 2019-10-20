@@ -136,15 +136,36 @@ class MapClient {
     class func postStudentLocation(postData: StudentInformation,completion: @escaping (PostSLResponse?, Error?) -> Void){
      
         let body = postData
-        taskPostRequest(url: Endpoints.postStudentLocation.url, body: body, decodable: PostSLResponse.self) { (response, error) in
-            if let response = response{
-                completion(response,nil)
-            }else{
-                print("ERROR IN POST SL")
+//        taskPostRequest(url: Endpoints.postStudentLocation.url, body: body, decodable: PostSLResponse.self) { (response, error) in
+//            if let response = response{
+//                completion(response,nil)
+//            }else{
+//                print("ERROR IN POST SL")
+//                completion(nil, error)
+//            }
+//        }
+        
+        var request = URLRequest(url: Endpoints.postStudentLocation.url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONEncoder().encode(body)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else{
+                completion(nil, error)
+                return
+            }
+            let decoder = JSONDecoder()
+            do{
+                let response = try decoder.decode(PostSLResponse.self, from: data)
+                DispatchQueue.main.async {
+                    completion(response, nil)
+                }
+            }catch{
                 completion(nil, error)
             }
         }
-        
+        task.resume()
     }
     
     class func putStudentLocation(objectId: String, data: StudentInformation, completion: @escaping (Bool, Error?) -> Void){
