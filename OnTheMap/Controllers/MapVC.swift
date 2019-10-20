@@ -13,7 +13,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
 
     var annotations = [MKPointAnnotation]()
     
-    @IBOutlet weak var mapPin: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()

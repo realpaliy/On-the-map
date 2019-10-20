@@ -60,4 +60,24 @@ class StudentListVC: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+    
+        let controller = storyboard?.instantiateViewController(identifier: "NewPinController") as! AddNewLocationVC
+        present(controller,animated: true, completion: nil)
+    
+    }
+    
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+    
+        MapClient.logout { (success, error) in
+            if success{
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    
+    }
+    
 }

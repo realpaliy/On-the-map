@@ -173,7 +173,18 @@
                             <outlet property="delegate" destination="TcS-Ow-sEk" id="mHQ-lF-G1J"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ZiN-fJ-y9z"/>
+                    <navigationItem key="navigationItem" id="ZiN-fJ-y9z">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="tdc-9n-3lb">
+                            <connections>
+                                <action selector="logoutPressed:" destination="TcS-Ow-sEk" id="qAi-tp-xKd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="A" image="plus" catalog="system" id="NL7-QF-J3u">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="TcS-Ow-sEk" id="i9V-4a-cKG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjH-Ol-yJo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -334,7 +345,7 @@
             </objects>
             <point key="canvasLocation" x="7040.579710144928" y="-524.33035714285711"/>
         </scene>
-        <!--MapVC-->
+        <!--On The Map-->
         <scene sceneID="ZJS-Zl-vgn">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" modalPresentationStyle="fullScreen" id="kzS-Tk-n0r" customClass="MapVC" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -343,40 +354,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bho-Yy-75s">
-                                <rect key="frame" x="0.0" y="100" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                             </mapView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilj-cd-F88">
-                                <rect key="frame" x="0.0" y="56" width="414" height="44"/>
-                                <items>
-                                    <barButtonItem title="Logout" id="RNy-Do-tOd">
-                                        <connections>
-                                            <action selector="logoutPressed:" destination="kzS-Tk-n0r" id="Dea-Uj-pny"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8cV-6V-Vc2"/>
-                                    <barButtonItem image="plus" catalog="system" id="4VC-Xi-iCZ">
-                                        <connections>
-                                            <action selector="mapPinPressed:" destination="kzS-Tk-n0r" id="GeI-kd-cNR"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="bho-Yy-75s" firstAttribute="leading" secondItem="g7A-iM-PnJ" secondAttribute="leading" id="5N7-qm-9fj"/>
-                            <constraint firstItem="ilj-cd-F88" firstAttribute="top" secondItem="g7A-iM-PnJ" secondAttribute="top" id="7pC-zA-3Av"/>
-                            <constraint firstItem="ilj-cd-F88" firstAttribute="leading" secondItem="bho-Yy-75s" secondAttribute="leading" id="Iau-3q-FTb"/>
-                            <constraint firstItem="bho-Yy-75s" firstAttribute="top" secondItem="ilj-cd-F88" secondAttribute="bottom" id="L1q-Pj-mfx"/>
-                            <constraint firstItem="bho-Yy-75s" firstAttribute="bottom" secondItem="g7A-iM-PnJ" secondAttribute="bottom" id="Ma1-oQ-Pmr"/>
-                            <constraint firstItem="ilj-cd-F88" firstAttribute="trailing" secondItem="bho-Yy-75s" secondAttribute="trailing" id="Nxc-xX-BER"/>
-                            <constraint firstItem="bho-Yy-75s" firstAttribute="trailing" secondItem="g7A-iM-PnJ" secondAttribute="trailing" id="eNL-y5-0aW"/>
+                            <constraint firstItem="bho-Yy-75s" firstAttribute="bottom" secondItem="g7A-iM-PnJ" secondAttribute="bottom" id="NvV-ua-hHf"/>
+                            <constraint firstItem="bho-Yy-75s" firstAttribute="top" secondItem="g7A-iM-PnJ" secondAttribute="top" id="aNB-9a-ZhT"/>
+                            <constraint firstItem="bho-Yy-75s" firstAttribute="trailing" secondItem="g7A-iM-PnJ" secondAttribute="trailing" id="ex4-iP-mvH"/>
+                            <constraint firstItem="bho-Yy-75s" firstAttribute="leading" secondItem="g7A-iM-PnJ" secondAttribute="leading" id="fDy-Mt-bXr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g7A-iM-PnJ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="omL-df-BcD"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="omL-df-BcD">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="OiG-YE-tmi">
+                            <connections>
+                                <action selector="logoutPressed:" destination="kzS-Tk-n0r" id="se9-YJ-s41"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="RSz-wq-dcC">
+                            <connections>
+                                <action selector="mapPinPressed:" destination="kzS-Tk-n0r" id="eWo-Tq-rdJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="mapPin" destination="4VC-Xi-iCZ" id="COr-Nn-qKh"/>
                         <outlet property="mapView" destination="bho-Yy-75s" id="Rrw-9B-FTd"/>
                     </connections>
                 </viewController>

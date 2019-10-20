@@ -18,6 +18,12 @@ class LoginVC: UIViewController {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
             MapClient.login(username: self.usernameTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.loginHandler(success:error:))
     }
@@ -36,7 +42,6 @@ class LoginVC: UIViewController {
             }
         }else{
             showError("Login Failed",error?.localizedDescription ?? "")
-            print("Hi")
         }
     
     }
