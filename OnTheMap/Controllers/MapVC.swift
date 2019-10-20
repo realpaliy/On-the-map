@@ -22,10 +22,21 @@ class MapVC: UIViewController, MKMapViewDelegate {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     func getLocation(){
         MapClient.getStudentInformation(completion: handleStudentLocationResponse(locations:error:))
     }
-    
 
     func handleStudentLocationResponse(locations: [StudentInformation], error: Error?){
         
@@ -76,11 +87,9 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func mapPinPressed(_ sender: Any) {
-    
-        let controller = storyboard?.instantiateViewController(identifier: "NewPinController") as! AddNewLocationVC
-        present(controller, animated: true, completion: nil)
-    
+        performSegue(withIdentifier: "addNewLocation", sender: nil)
     }
+    
     @IBAction func logoutPressed(_ sender: Any) {
     
         MapClient.logout { (success, error) in

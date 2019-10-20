@@ -164,7 +164,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVF-a4-pv7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528" y="770"/>
+            <point key="canvasLocation" x="2455" y="990"/>
         </scene>
         <!--Student ListVC-->
         <scene sceneID="aZ6-vk-cXJ">
@@ -183,21 +183,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lwK-QM-rBQ">
-                                            <rect key="frame" x="59" y="10" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="85" y="10" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ngr-TS-h6K">
-                                            <rect key="frame" x="59" y="31.5" width="33" height="14.5"/>
+                                            <rect key="frame" x="85" y="31.5" width="33" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="mappin" catalog="system" id="5Vr-fC-Stu">
-                                            <rect key="frame" x="23.75" y="17" width="16.5" height="20"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="WebURL" id="5Vr-fC-Stu">
+                                            <rect key="frame" x="20" y="2.5" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -220,13 +220,14 @@
                             <color key="tintColor" red="0.0078431372550000003" green="0.70196078429999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="TcS-Ow-sEk" id="i9V-4a-cKG"/>
+                                <segue destination="ypi-8i-HFo" kind="show" identifier="addNewLocation" id="nEk-Ue-Sjc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjH-Ol-yJo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4281" y="773"/>
+            <point key="canvasLocation" x="3555" y="990"/>
         </scene>
         <!--Map-->
         <scene sceneID="FJh-DQ-yYV">
@@ -250,11 +251,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewPinController" modalPresentationStyle="fullScreen" id="ypi-8i-HFo" customClass="AddNewLocationVC" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="09W-Ci-ZIc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-wd-O6y" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="405" width="262" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-wd-O6y" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
+                                <rect key="frame" x="76" y="417" width="262" height="34"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -266,7 +267,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCC-fi-gt2" customClass="ButtonVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="110" y="523" width="195" height="41"/>
+                                <rect key="frame" x="110" y="535" width="195" height="41"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="0.049282962328767124" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="7xk-5Y-axm"/>
@@ -291,7 +292,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVC-ri-9vC" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="356" width="262" height="34"/>
+                                <rect key="frame" x="76" y="368" width="262" height="34"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -303,7 +304,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LxI-vv-jLF" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="307" width="262" height="34"/>
+                                <rect key="frame" x="76" y="319" width="262" height="34"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -314,8 +315,8 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="Name"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6z-JD-Brz" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="454" width="262" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6z-JD-Brz" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
+                                <rect key="frame" x="76" y="466" width="262" height="34"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -323,11 +324,11 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="URL"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="WebURL"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roZ-e7-n2p">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem title="Cancel" id="M6K-eN-Rb6">
@@ -340,7 +341,7 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacitylogo" translatesAutoresizingMaskIntoConstraints="NO" id="VVP-TU-cK4">
-                                <rect key="frame" x="87" y="154" width="240" height="128"/>
+                                <rect key="frame" x="87" y="166" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Dbo-JK-dZv"/>
                                 </constraints>
@@ -383,21 +384,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BCk-TB-ydI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5498.5507246376819" y="-538.39285714285711"/>
+            <point key="canvasLocation" x="4778" y="220"/>
         </scene>
         <!--New Location MapVC-->
         <scene sceneID="ecU-BO-D4A">
             <objects>
                 <viewController storyboardIdentifier="NewLocationVC" modalPresentationStyle="fullScreen" id="Ejn-Kt-q34" customClass="NewLocationMapVC" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6uV-vv-jis">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sVz-SP-HzW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="668"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="553"/>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoW-pL-Vdx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Cancel" id="juA-nI-YEr">
                                         <color key="tintColor" red="0.0078431372550000003" green="0.70196078429999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -408,7 +409,7 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qa-2V-Wpb" customClass="ButtonVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="132" y="786" width="150" height="37"/>
+                                <rect key="frame" x="132" y="683" width="150" height="37"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="0.04995184075342466" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="3KC-U7-sm6"/>
@@ -455,7 +456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iVa-ga-Y9W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7040.579710144928" y="-524.33035714285711"/>
+            <point key="canvasLocation" x="5814" y="220"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="ZJS-Zl-vgn">
@@ -489,6 +490,7 @@
                             <color key="tintColor" red="0.0078431372550000003" green="0.70196078429999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="mapPinPressed:" destination="kzS-Tk-n0r" id="eWo-Tq-rdJ"/>
+                                <segue destination="ypi-8i-HFo" kind="show" identifier="addNewLocation" id="860-LC-sIZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -498,19 +500,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JqP-sN-REd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4192.753623188406" y="-538.39285714285711"/>
+            <point key="canvasLocation" x="3554" y="-524"/>
         </scene>
     </scenes>
     <resources>
         <image name="Location" width="50" height="50"/>
         <image name="Name" width="50" height="50"/>
-        <image name="URL" width="50" height="50"/>
+        <image name="WebURL" width="50" height="50"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="lock" width="50" height="50"/>
         <image name="map" catalog="system" width="64" height="56"/>
-        <image name="mappin" catalog="system" width="52" height="64"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="udacitylogo" width="2400" height="1260"/>
         <image name="user" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="nEk-Ue-Sjc"/>
+    </inferredMetricsTieBreakers>
 </document>

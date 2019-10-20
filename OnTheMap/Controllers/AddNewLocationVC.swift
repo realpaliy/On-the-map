@@ -44,12 +44,12 @@ class AddNewLocationVC: UIViewController {
         let controller = storyboard?.instantiateViewController(identifier: "NewLocationVC") as! NewLocationMapVC
         controller.newLocation = loc
         controller.location = annotation
-        present(controller, animated: true, completion: nil)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
     
-        dismiss(animated: true, completion: nil)
+       navigationController?.popViewController(animated: true)
     
     }
     

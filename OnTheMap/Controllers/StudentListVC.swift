@@ -22,6 +22,18 @@ class StudentListVC: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -64,9 +76,8 @@ class StudentListVC: UITableViewController {
     
     @IBAction func addButtonPressed(_ sender: Any) {
     
-        let controller = storyboard?.instantiateViewController(identifier: "NewPinController") as! AddNewLocationVC
-        present(controller,animated: true, completion: nil)
-    
+        performSegue(withIdentifier: "addNewLocation", sender: nil)
+        
     }
     
     

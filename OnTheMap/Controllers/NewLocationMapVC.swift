@@ -38,8 +38,7 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
             if let data = data{
                 self.newLocation.createdAt = data.createdAt
                 self.newLocation.objectId = data.objectId
-                let controller = self.storyboard?.instantiateViewController(identifier: "MapViewController") as! MapVC
-                self.present(controller,animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
             }else{
                 print("Error")
             }
@@ -49,7 +48,7 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
     
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
         
     }
 }
