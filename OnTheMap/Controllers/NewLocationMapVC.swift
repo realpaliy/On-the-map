@@ -12,13 +12,15 @@ import MapKit
 class NewLocationMapVC: UIViewController, MKMapViewDelegate{
 
     var location: MKPointAnnotation!
-    
     var newLocation: StudentInformation!
     
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var postButton: ButtonVC!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         if let location = location{
             var region: MKCoordinateRegion = mapView.region
             region.center.latitude = location.coordinate.latitude
@@ -27,7 +29,6 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
             region.span.longitudeDelta = 0.05
             mapView.setRegion(region, animated: true)
             mapView.addAnnotation(location)
-            
         }
         
     }
@@ -36,19 +37,32 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
     
         MapClient.postStudentLocation(postData: newLocation) { (data, error) in
             if let data = data{
+                self.searchStatus(true)
                 self.newLocation.createdAt = data.createdAt
                 self.newLocation.objectId = data.objectId
                 self.navigationController?.popToRootViewController(animated: true)
             }else{
-                print("Error")
+                self.searchStatus(false)
+                self.showError("Error", "Error happened with adding new annotation")
             }
         }
         
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-    
         navigationController?.popToRootViewController(animated: true)
-        
     }
+    
+    func searchStatus(_ status: Bool){
+        DispatchQueue.main.async {
+            if status{
+                self.statusIndicator.startAnimating()
+            }else{
+                self.statusIndicator.stopAnimating()
+            }
+            self.postButton.isEnabled = !status
+            self.cancelButton.isEnabled = !status
+        }
+    }
+    
 }

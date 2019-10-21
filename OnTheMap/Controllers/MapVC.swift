@@ -13,11 +13,16 @@ class MapVC: UIViewController, MKMapViewDelegate {
 
     var annotations = [MKPointAnnotation]()
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         if StudentLocationModel.studentLocations.isEmpty{
+            loginStatus(true)
             getLocation()
         }
     }
@@ -26,6 +31,8 @@ class MapVC: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
+        loginStatus(true)
+        getLocation()
     }
     
     func getLocation(){
@@ -50,7 +57,8 @@ class MapVC: UIViewController, MKMapViewDelegate {
             annotation.subtitle = mediaURL
             
             annotations.append(annotation)
-            
+            blurView.isHidden = true
+            loginStatus(false)
         }
         self.mapView.addAnnotations(annotations)
     }
@@ -92,6 +100,18 @@ class MapVC: UIViewController, MKMapViewDelegate {
             }
         }
         
+    }
+    
+    func loginStatus(_ status: Bool){
+        DispatchQueue.main.async {
+            if status{
+                self.statusIndicator.startAnimating()
+            }else{
+                self.statusIndicator.stopAnimating()
+            }
+            self.addButton.isEnabled = !status
+            self.logoutButton.isEnabled = !status
+        }
     }
     
 }

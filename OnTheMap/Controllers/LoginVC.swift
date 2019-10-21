@@ -10,6 +10,9 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var loginButton: ButtonVC!
+    @IBOutlet weak var signUpButton: ButtonVC!
+    @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -25,11 +28,11 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+            loginStatus(true)
             MapClient.login(username: self.usernameTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.loginHandler(success:error:))
     }
 
     func loginHandler(success: Bool, error: Error?){
-        
         if success{
             print(MapClient.Auth.sessionId)
             DispatchQueue.main.async {
@@ -37,18 +40,33 @@ class LoginVC: UIViewController {
                 MapClient.updateUser { (response, error) in
                     if let response = response {
                         print(response)
+                        self.loginStatus(false)
                     }
                 }
             }
         }else{
             showError("Login Failed",error?.localizedDescription ?? "")
+            self.loginStatus(false)
         }
     
     }
     
     @IBAction func signUpButton(_ sender: Any) {
-    
         UIApplication.shared.open(URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com/authenticated")!)
-    
     }
+    
+    func loginStatus(_ status: Bool){
+        DispatchQueue.main.async {
+            if status{
+                self.statusIndicator.startAnimating()
+            }else{
+                self.statusIndicator.stopAnimating()
+            }
+            self.passwordTextField.isEnabled = !status
+            self.usernameTextField.isEnabled = !status
+            self.loginButton.isEnabled = !status
+            self.signUpButton.isEnabled = !status
+        }
+    }
+    
 }

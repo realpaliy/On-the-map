@@ -11,6 +11,9 @@ import MapKit
 
 class AddNewLocationVC: UIViewController {
 
+    @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchButton: ButtonVC!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var urlText: UITextField!
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
@@ -31,6 +34,7 @@ class AddNewLocationVC: UIViewController {
     
     @IBAction func buttonPressed(_ sender: Any) {
         checkTF()
+        searchStatus(true)
         let location = locationTF.text!
         let name = "\(firstNameTF.text!) \(lastNameTF.text!)"
         let geocoder = CLGeocoder()
@@ -50,6 +54,7 @@ class AddNewLocationVC: UIViewController {
         let controller = storyboard?.instantiateViewController(identifier: "NewLocationVC") as! NewLocationMapVC
         controller.newLocation = loc
         controller.location = annotation
+        self.searchStatus(false)
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -68,6 +73,23 @@ class AddNewLocationVC: UIViewController {
             showError("Error","Enter location")
         }else if urlText.text!.isEmpty{
             showError("Error","Enter your URL")
+        }
+        searchStatus(false)
+    }
+
+    func searchStatus(_ status: Bool){
+        DispatchQueue.main.async {
+            if status{
+                self.statusIndicator.startAnimating()
+            }else{
+                self.statusIndicator.stopAnimating()
+            }
+            self.searchButton.isEnabled = !status
+            self.firstNameTF.isEnabled = !status
+            self.lastNameTF.isEnabled = !status
+            self.locationTF.isEnabled = !status
+            self.urlText.isEnabled = !status
+            self.cancelButton.isEnabled = !status
         }
     }
     
