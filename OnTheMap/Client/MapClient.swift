@@ -44,7 +44,7 @@ class MapClient {
         
     }
     
-    class func taskGetRequest<Dec: Decodable>(url: URL, decodable: Dec.Type, completion: @escaping (Dec?, Error?) -> Void){
+    class func taskGetRequest<Dec: Decodable>(url: URL,securityStatus: Bool,decodable: Dec.Type, completion: @escaping (Dec?, Error?) -> Void){
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
@@ -54,8 +54,15 @@ class MapClient {
                 return
             }
             let decoder = JSONDecoder()
+            
+            var newData = data
+            
+            if securityStatus{
+                newData = data.subdata(in: 5..<data.count)
+            }
+            
             do{
-                let response = try decoder.decode(decodable.self, from: data)
+                let response = try decoder.decode(decodable.self, from: newData)
                 DispatchQueue.main.async {
                     completion(response,nil)
                 }
@@ -68,7 +75,7 @@ class MapClient {
         task.resume()
     }
     
-    class func taskPostRequest<Dec: Decodable, Enc: Encodable>(url: URL, body: Enc, decodable: Dec.Type, completion: @escaping (Dec?, Error?) -> Void){
+    class func taskPostRequest<Dec: Decodable, Enc: Encodable>(url: URL,securityStatus: Bool, body: Enc, decodable: Dec.Type, completion: @escaping (Dec?, Error?) -> Void){
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -84,7 +91,11 @@ class MapClient {
                 return
             }
             let decoder = JSONDecoder()
-            let newData = data.subdata(in: 5..<data.count)
+            
+            var newData = data
+            if securityStatus{
+                newData = data.subdata(in: 5..<data.count)
+            }
             do{
                 let response = try decoder.decode(decodable.self, from: newData)
                 DispatchQueue.main.async {
@@ -110,7 +121,7 @@ class MapClient {
     class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void){
         
         let body = LoginRequest(udacity: LoginCredentials(username: username, password: password))
-        taskPostRequest(url: Endpoints.login.url, body: body, decodable: LoginResponse.self) { (response, error) in
+        taskPostRequest(url: Endpoints.login.url,securityStatus: true, body: body, decodable: LoginResponse.self) { (response, error) in
             if let response = response{
                 Auth.sessionId = response.session.id
                 Auth.accountId = response.account.key
@@ -124,7 +135,7 @@ class MapClient {
     
     class func getStudentInformation(completion: @escaping ([StudentInformation], Error?) -> Void){
         
-        taskGetRequest(url: Endpoints.getStudentInformation.url, decodable: StudentResponse.self) { (response, error) in
+        taskGetRequest(url: Endpoints.getStudentInformation.url, securityStatus: false, decodable: StudentResponse.self) { (response, error) in
             if let response = response {
                 completion(response.results, nil)
             }else{
@@ -136,36 +147,14 @@ class MapClient {
     class func postStudentLocation(postData: StudentInformation,completion: @escaping (PostSLResponse?, Error?) -> Void){
      
         let body = postData
-//        taskPostRequest(url: Endpoints.postStudentLocation.url, body: body, decodable: PostSLResponse.self) { (response, error) in
-//            if let response = response{
-//                completion(response,nil)
-//            }else{
-//                print("ERROR IN POST SL")
-//                completion(nil, error)
-//            }
-//        }
-        
-        var request = URLRequest(url: Endpoints.postStudentLocation.url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try! JSONEncoder().encode(body)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else{
-                completion(nil, error)
-                return
-            }
-            let decoder = JSONDecoder()
-            do{
-                let response = try decoder.decode(PostSLResponse.self, from: data)
-                DispatchQueue.main.async {
-                    completion(response, nil)
-                }
-            }catch{
+        taskPostRequest(url: Endpoints.postStudentLocation.url,securityStatus: false, body: body, decodable: PostSLResponse.self) { (response, error) in
+            if let response = response{
+                completion(response,nil)
+            }else{
+                print("ERROR IN POST SL")
                 completion(nil, error)
             }
         }
-        task.resume()
     }
     
     class func putStudentLocation(objectId: String, data: StudentInformation, completion: @escaping (Bool, Error?) -> Void){
@@ -196,21 +185,15 @@ class MapClient {
     
     class func updateUser(completion: @escaping (UserUpdate?, Error?) -> Void){
         
-        let task = URLSession.shared.dataTask(with: Endpoints.getUserUpdate.url) { (data, response, error) in
-            guard let data = data else {
-                completion(nil, error)
-                return
-            }
-            let decoder = JSONDecoder()
-            let newData = data.subdata(in: 5..<data.count)
-            do{
-                let responseObject = try decoder.decode(UserUpdate.self, from: newData)
-                completion(responseObject, nil)
-            }catch{
+        taskGetRequest(url: Endpoints.getUserUpdate.url, securityStatus: true, decodable: UserUpdate.self) { (response, error) in
+            if let response = response {
+                completion(response, nil)
+            }else{
                 completion(nil, error)
             }
         }
-        task.resume()
+        
+        
     }
     
     class func logout(completion: @escaping (Bool, Error?) -> Void){

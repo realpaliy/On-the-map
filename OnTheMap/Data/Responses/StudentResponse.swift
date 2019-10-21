@@ -9,5 +9,7 @@
 import Foundation
 
 struct StudentResponse: Codable{
+    
     let results: [StudentInformation]
+
 }

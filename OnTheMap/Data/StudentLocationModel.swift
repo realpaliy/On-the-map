@@ -11,6 +11,5 @@ import Foundation
 class StudentLocationModel {
     
     static var studentLocations = [StudentInformation]()
-    static var selectedStudentLocation: StudentResponse!
     
 }

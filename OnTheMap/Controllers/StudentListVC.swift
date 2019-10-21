@@ -45,10 +45,7 @@ class StudentListVC: UITableViewController {
         
         if student.mediaURL.starts(with: "http"){
             cell.detailTextLabel?.text = "⌲Link: \(student.mediaURL)"
-        }else{
-            cell.detailTextLabel?.text = "⌲Link: Not Available"
         }
-                
         return cell
     }
 

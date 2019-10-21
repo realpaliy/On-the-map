@@ -15,6 +15,3 @@ struct PostSLResponse: Codable{
     
 }
 
-struct PostedLocation {
-    static var postedLocation: StudentInformation!
-}

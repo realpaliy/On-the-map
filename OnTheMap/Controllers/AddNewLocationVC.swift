@@ -71,8 +71,8 @@ class AddNewLocationVC: UIViewController {
             showError("Error","Enter your last name")
         }else if locationTF.text!.isEmpty{
             showError("Error","Enter location")
-        }else if urlText.text!.isEmpty{
-            showError("Error","Enter your URL")
+        }else if urlText.text!.isEmpty || !UIApplication.shared.canOpenURL(URL(string: urlText.text!)!){
+            showError("Error","Enter correct URL")
         }
         searchStatus(false)
     }
