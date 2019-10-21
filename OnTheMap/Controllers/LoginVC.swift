@@ -37,14 +37,6 @@ class LoginVC: UIViewController {
             print(MapClient.Auth.accountId)
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginComplete", sender: nil)
-                MapClient.updateUser { (response, error) in
-                    if let response = response {
-                        print(response)
-                        self.loginStatus(false)
-                    }else{
-                        print("Error updating user login VC")
-                    }
-                }
             }
         }else{
             showError("Login Failed",error?.localizedDescription ?? "")

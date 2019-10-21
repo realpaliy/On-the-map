@@ -559,7 +559,7 @@
         <image name="Location" width="50" height="50"/>
         <image name="Name" width="50" height="50"/>
         <image name="WebURL" width="50" height="50"/>
-        <image name="list.dash" catalog="system" width="32" height="32"/>
+        <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="lock" width="50" height="50"/>
         <image name="map" catalog="system" width="64" height="56"/>
         <image name="plus" catalog="system" width="64" height="56"/>
@@ -567,6 +567,6 @@
         <image name="user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="860-LC-sIZ"/>
+        <segue reference="nEk-Ue-Sjc"/>
     </inferredMetricsTieBreakers>
 </document>

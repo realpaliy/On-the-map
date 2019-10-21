@@ -22,3 +22,4 @@ struct StudentInformation: Codable{
     var updatedAt: String
     
 }
+

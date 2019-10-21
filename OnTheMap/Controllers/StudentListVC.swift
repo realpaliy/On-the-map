@@ -14,7 +14,6 @@ class StudentListVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         MapClient.getStudentInformation { (students, error) in
             self.students = students
             self.tableView.reloadData()
@@ -81,5 +80,7 @@ class StudentListVC: UITableViewController {
         }
     
     }
+    
+    
     
 }

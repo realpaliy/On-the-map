@@ -22,8 +22,6 @@ class MapClient {
         case login
         case getStudentInformation
         case postStudentLocation
-        case putStudentLocation(String)
-        case getUserUpdate
         case logout
 
         var stringValue: String{
@@ -31,8 +29,6 @@ class MapClient {
             case .login: return Endpoints.base + "/session"
             case .getStudentInformation: return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
             case .postStudentLocation: return Endpoints.base + "/StudentLocation"
-            case .putStudentLocation(let object): return Endpoints.base + "StudentLocation/\(object)"
-            case .getUserUpdate: return Endpoints.base + "/users/\(Auth.accountId)"
             case .logout: return Endpoints.base + "/session"
                 
             }
@@ -155,45 +151,6 @@ class MapClient {
                 completion(nil, error)
             }
         }
-    }
-    
-    class func putStudentLocation(objectId: String, data: StudentInformation, completion: @escaping (Bool, Error?) -> Void){
-        
-        var request = URLRequest(url: Endpoints.putStudentLocation(objectId).url)
-        request.httpMethod = "PUT"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body = data
-        request.httpBody = try! JSONEncoder().encode(body)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
-                completion(false, error)
-                return
-            }
-            let decoder = JSONDecoder()
-            do{
-                let responseObject = try decoder.decode(PutSLResponse.self, from: data)
-                PutSLUpdated.putSLUpdated.updatedAt = responseObject.updatedAt
-                completion(true,nil)
-            }catch{
-                completion(false, nil)
-                print("ERROR IN PUT SL")
-            }
-        }
-        task.resume()
-    }
-    
-    class func updateUser(completion: @escaping (UserUpdate?, Error?) -> Void){
-        
-        taskGetRequest(url: Endpoints.getUserUpdate.url, securityStatus: true, decodable: UserUpdate.self) { (response, error) in
-            if let response = response {
-                completion(response, nil)
-            }else{
-                completion(nil, error)
-            }
-        }
-        
-        
     }
     
     class func logout(completion: @escaping (Bool, Error?) -> Void){

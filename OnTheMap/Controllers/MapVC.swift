@@ -22,7 +22,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         if StudentLocationModel.studentLocations.isEmpty{
-            loginStatus(true)
+            mapStatus(true)
             getLocation()
         }
     }
@@ -31,7 +31,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
-        loginStatus(true)
+        mapStatus(true)
         getLocation()
     }
     
@@ -40,27 +40,32 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
 
     func handleStudentLocationResponse(locations: [StudentInformation], error: Error?){
-        
-        for dictionary in locations{
-            let lat = CLLocationDegrees(dictionary.latitude as Double)
-            let long = CLLocationDegrees(dictionary.longitude as Double)
-            
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            let first = dictionary.firstName
-            let last = dictionary.lastName
-            let mediaURL = dictionary.mediaURL
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(first) \(last)"
-            annotation.subtitle = mediaURL
-            
-            annotations.append(annotation)
-            blurView.isHidden = true
-            loginStatus(false)
+        if !locations.isEmpty{
+            for dictionary in locations{
+                let lat = CLLocationDegrees(dictionary.latitude as Double)
+                let long = CLLocationDegrees(dictionary.longitude as Double)
+                
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let first = dictionary.firstName
+                let last = dictionary.lastName
+                let mediaURL = dictionary.mediaURL
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(first) \(last)"
+                annotation.subtitle = mediaURL
+                
+                annotations.append(annotation)
+                blurView.isHidden = true
+                mapStatus(false)
+            }
+            self.mapView.addAnnotations(annotations)
+        }else{
+            showError("Error", "Error happened while downloading data")
+            mapStatus(false)
         }
-        self.mapView.addAnnotations(annotations)
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -102,7 +107,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         
     }
     
-    func loginStatus(_ status: Bool){
+    func mapStatus(_ status: Bool){
         DispatchQueue.main.async {
             if status{
                 self.statusIndicator.startAnimating()
