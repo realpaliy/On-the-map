@@ -28,12 +28,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
         tabBarController?.tabBar.isHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = true
-        tabBarController?.tabBar.isHidden = true
-    }
-    
     func getLocation(){
         MapClient.getStudentInformation(completion: handleStudentLocationResponse(locations:error:))
     }

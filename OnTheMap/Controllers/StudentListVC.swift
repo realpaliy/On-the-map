@@ -28,12 +28,6 @@ class StudentListVC: UITableViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = true
-        tabBarController?.tabBar.isHidden = true
-    }
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
