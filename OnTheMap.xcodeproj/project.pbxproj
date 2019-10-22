@@ -11,11 +11,11 @@
 		CB1C841E235953FF008EEEA0 /* NewLocationMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C841D235953FF008EEEA0 /* NewLocationMapVC.swift */; };
 		CB39A58B235CCA7200D053C8 /* TextFieldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB39A58A235CCA7200D053C8 /* TextFieldVC.swift */; };
 		CB39A58D235CCC3B00D053C8 /* ButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB39A58C235CCC3B00D053C8 /* ButtonVC.swift */; };
-		CB80FC8E235B81240072F225 /* StudentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC8D235B81240072F225 /* StudentListVC.swift */; };
 		CB80FC90235B89270072F225 /* ShowErrorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC8F235B89270072F225 /* ShowErrorVC.swift */; };
 		CB80FC92235B9CAF0072F225 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC91235B9CAF0072F225 /* LogoutRequest.swift */; };
 		CB80FC94235BABA40072F225 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC93235BABA40072F225 /* StatusResponse.swift */; };
 		CB9B22332359162E0016DDB4 /* StudentLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B22322359162E0016DDB4 /* StudentLocationModel.swift */; };
+		CBB0F17F235E7B08007BC8EB /* SLListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB0F17E235E7B08007BC8EB /* SLListVC.swift */; };
 		CBD80770235A2EC900DC4FA1 /* PostStudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8076F235A2EC900DC4FA1 /* PostStudentLocation.swift */; };
 		CBE042AC2357FC9400621358 /* StudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE042AB2357FC9400621358 /* StudentResponse.swift */; };
 		CBF10FD22358FDAD005E8439 /* MapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF10FD12358FDAD005E8439 /* MapClient.swift */; };
@@ -38,11 +38,11 @@
 		CB1C841D235953FF008EEEA0 /* NewLocationMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationMapVC.swift; sourceTree = "<group>"; };
 		CB39A58A235CCA7200D053C8 /* TextFieldVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldVC.swift; sourceTree = "<group>"; };
 		CB39A58C235CCC3B00D053C8 /* ButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonVC.swift; sourceTree = "<group>"; };
-		CB80FC8D235B81240072F225 /* StudentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListVC.swift; sourceTree = "<group>"; };
 		CB80FC8F235B89270072F225 /* ShowErrorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowErrorVC.swift; sourceTree = "<group>"; };
 		CB80FC91235B9CAF0072F225 /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		CB80FC93235BABA40072F225 /* StatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
 		CB9B22322359162E0016DDB4 /* StudentLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationModel.swift; sourceTree = "<group>"; };
+		CBB0F17E235E7B08007BC8EB /* SLListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLListVC.swift; sourceTree = "<group>"; };
 		CBD8076F235A2EC900DC4FA1 /* PostStudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStudentLocation.swift; sourceTree = "<group>"; };
 		CBE042AB2357FC9400621358 /* StudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentResponse.swift; sourceTree = "<group>"; };
 		CBF10FD12358FDAD005E8439 /* MapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapClient.swift; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 				CBF10FE223591490005E8439 /* MapVC.swift */,
 				CB1C841B23594085008EEEA0 /* AddNewLocationVC.swift */,
 				CB1C841D235953FF008EEEA0 /* NewLocationMapVC.swift */,
-				CB80FC8D235B81240072F225 /* StudentListVC.swift */,
 				CB80FC8F235B89270072F225 /* ShowErrorVC.swift */,
+				CBB0F17E235E7B08007BC8EB /* SLListVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -255,6 +255,7 @@
 				CBF10FD22358FDAD005E8439 /* MapClient.swift in Sources */,
 				CBFFDF5E2357E754000C523F /* StudentInformation.swift in Sources */,
 				CB80FC92235B9CAF0072F225 /* LogoutRequest.swift in Sources */,
+				CBB0F17F235E7B08007BC8EB /* SLListVC.swift in Sources */,
 				CB80FC94235BABA40072F225 /* StatusResponse.swift in Sources */,
 				CB80FC90235B89270072F225 /* ShowErrorVC.swift in Sources */,
 				CBFFDF442357E309000C523F /* AppDelegate.swift in Sources */,
@@ -266,7 +267,6 @@
 				CBF10FD42358FF97005E8439 /* LoginRequest.swift in Sources */,
 				CBD80770235A2EC900DC4FA1 /* PostStudentLocation.swift in Sources */,
 				CBF10FD92359037E005E8439 /* LoginResponse.swift in Sources */,
-				CB80FC8E235B81240072F225 /* StudentListVC.swift in Sources */,
 				CB1C841C23594085008EEEA0 /* AddNewLocationVC.swift in Sources */,
 				CBFFDF5B2357E42A000C523F /* LoginVC.swift in Sources */,
 			);

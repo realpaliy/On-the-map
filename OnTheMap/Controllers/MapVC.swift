@@ -31,7 +31,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
-        mapStatus(true)
         getLocation()
     }
     
@@ -57,7 +56,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
                 annotation.subtitle = mediaURL
                 
                 annotations.append(annotation)
-                blurView.isHidden = true
                 mapStatus(false)
             }
             self.mapView.addAnnotations(annotations)
@@ -116,6 +114,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
             }
             self.addButton.isEnabled = !status
             self.logoutButton.isEnabled = !status
+            self.blurView.isHidden = !status
         }
     }
     

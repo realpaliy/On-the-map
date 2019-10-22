@@ -33,8 +33,8 @@ class AddNewLocationVC: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
+        self.searchStatus(true)
         checkTF()
-        searchStatus(true)
         let location = locationTF.text!
         let name = "\(firstNameTF.text!) \(lastNameTF.text!)"
         let geocoder = CLGeocoder()
@@ -64,17 +64,21 @@ class AddNewLocationVC: UIViewController {
     
     }
     
-    func checkTF(){
+    func checkTF() {
         if firstNameTF.text!.isEmpty{
             showError("Error","Enter your first name")
+            searchStatus(false)
         }else if lastNameTF.text!.isEmpty{
             showError("Error","Enter your last name")
+            searchStatus(false)
         }else if locationTF.text!.isEmpty{
             showError("Error","Enter location")
+            searchStatus(false)
         }else if urlText.text!.isEmpty || !UIApplication.shared.canOpenURL(URL(string: urlText.text!)!){
             showError("Error","Enter correct URL")
+            searchStatus(false)
         }
-        searchStatus(false)
+        
     }
 
     func searchStatus(_ status: Bool){

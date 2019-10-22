@@ -34,12 +34,12 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
     }
 
     @IBAction func buttonPressed(_ sender: Any) {
-    
+        self.searchStatus(true)
         MapClient.postStudentLocation(postData: newLocation) { (data, error) in
             if let data = data{
-                self.searchStatus(true)
                 self.newLocation.createdAt = data.createdAt
                 self.newLocation.objectId = data.objectId
+                self.searchStatus(false)
                 self.navigationController?.popToRootViewController(animated: true)
             }else{
                 self.searchStatus(false)
