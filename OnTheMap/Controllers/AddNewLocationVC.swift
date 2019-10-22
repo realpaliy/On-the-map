@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddNewLocationVC: UIViewController {
+class AddNewLocationVC: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: ButtonVC!
@@ -17,12 +17,20 @@ class AddNewLocationVC: UIViewController {
     @IBOutlet weak var urlText: UITextField!
     @IBOutlet weak var locationTF: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        urlText.delegate = self
+        locationTF.delegate = self
+    }
+    
     let annotation = MKPointAnnotation()
     var firstName = ""
     var lastName = ""
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotificationsWillHide()
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
         MapClient.getUserPublicInfo { (data, error) in
@@ -31,6 +39,11 @@ class AddNewLocationVC: UIViewController {
                 self.lastName = data.lastName
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
@@ -94,6 +107,47 @@ class AddNewLocationVC: UIViewController {
             self.urlText.isEnabled = !status
             self.cancelButton.isEnabled = !status
         }
+    }
+    
+    func hideKeyboard(_ textField: UITextField){
+        textField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard(textField)
+        return true
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    func subscribeToKeyboardNotificationsWillHide() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        
+        view.frame.origin.y = 0
+        
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if urlText.isEditing{
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
     }
     
 }
