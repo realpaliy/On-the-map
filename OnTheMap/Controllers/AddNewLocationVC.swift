@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class AddNewLocationVC: UIViewController {
-
+    
     @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: ButtonVC!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -23,7 +23,7 @@ class AddNewLocationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,9 +59,9 @@ class AddNewLocationVC: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-    
-       navigationController?.popViewController(animated: true)
-    
+        
+        navigationController?.popViewController(animated: true)
+        
     }
     
     func checkTF() {
@@ -80,7 +80,7 @@ class AddNewLocationVC: UIViewController {
         }
         
     }
-
+    
     func searchStatus(_ status: Bool){
         DispatchQueue.main.async {
             if status{

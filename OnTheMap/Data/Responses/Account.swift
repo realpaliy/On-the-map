@@ -10,7 +10,7 @@ import Foundation
 
 struct Account: Codable{
     
-   let registered: Bool
-   let key: String
+    let registered: Bool
+    let key: String
     
 }

@@ -33,10 +33,11 @@ class SLListVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
+        tableView.reloadData()
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-    
+        
         MapClient.logout { (success, error) in
             if success{
                 self.showLogout()
@@ -46,9 +47,9 @@ class SLListVC: UIViewController {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
-    
+        
         performSegue(withIdentifier: "addNewLocation", sender: nil)
-    
+        
     }
 }
 
@@ -57,37 +58,37 @@ extension SLListVC: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return students.count
-   }
-   
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-       
-       let student = students[indexPath.row]
-       
-       cell.textLabel?.text = "\(student.firstName) \(student.lastName)"
-       
-       if student.mediaURL.starts(with: "http"){
-           cell.detailTextLabel?.text = "⌲Link: \(student.mediaURL)"
-       }
-       return cell
-   }
-
-   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return 50
-   }
-
-   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let student = students[indexPath.row]
-       if UIApplication.shared.canOpenURL(URL(string: student.mediaURL)!){
-           UIApplication.shared.open(URL(string: student.mediaURL)!)
-       }else{
-           showError("Error", "Incorrect URL")
-       }
-       tableView.deselectRow(at: indexPath, animated: true)
-   }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return students.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        
+        let student = students[indexPath.row]
+        
+        cell.textLabel?.text = "\(student.firstName) \(student.lastName)"
+        
+        if student.mediaURL.starts(with: "http"){
+            cell.detailTextLabel?.text = "⌲Link: \(student.mediaURL)"
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = students[indexPath.row]
+        if UIApplication.shared.canOpenURL(URL(string: student.mediaURL)!){
+            UIApplication.shared.open(URL(string: student.mediaURL)!)
+        }else{
+            showError("Error", "Incorrect URL")
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func tableStatus(_ status: Bool){
         DispatchQueue.main.async {

@@ -23,7 +23,7 @@ class MapClient {
         case getStudentInformation
         case postStudentLocation
         case logout
-
+        
         var stringValue: String{
             switch self {
             case .login: return Endpoints.base + "/session"
@@ -141,7 +141,7 @@ class MapClient {
     }
     
     class func postStudentLocation(postData: StudentInformation,completion: @escaping (PostSLResponse?, Error?) -> Void){
-     
+        
         let body = postData
         taskPostRequest(url: Endpoints.postStudentLocation.url,securityStatus: false, body: body, decodable: PostSLResponse.self) { (response, error) in
             if let response = response{

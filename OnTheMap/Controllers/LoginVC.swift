@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
     @IBOutlet weak var loginButton: ButtonVC!
     @IBOutlet weak var signUpButton: ButtonVC!
     @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
@@ -20,7 +20,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         usernameTextField.text = ""
@@ -28,10 +28,10 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
-            loginStatus(true)
-            MapClient.login(username: self.usernameTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.loginHandler(success:error:))
+        loginStatus(true)
+        MapClient.login(username: self.usernameTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.loginHandler(success:error:))
     }
-
+    
     func loginHandler(success: Bool, error: Error?){
         if success{
             print(MapClient.Auth.accountId)
@@ -42,7 +42,7 @@ class LoginVC: UIViewController {
             showError("Login Failed",error?.localizedDescription ?? "")
             self.loginStatus(false)
         }
-    
+        
     }
     
     @IBAction func signUpButton(_ sender: Any) {

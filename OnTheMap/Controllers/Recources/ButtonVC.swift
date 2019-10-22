@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable class ButtonVC: UIButton {
-
+    
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet{
             self.layer.borderWidth = borderWidth
@@ -27,5 +27,5 @@ import UIKit
             self.layer.cornerRadius = cornerRadius
         }
     }
-
+    
 }

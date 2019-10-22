@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class MapVC: UIViewController, MKMapViewDelegate {
-
+    
     var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -37,7 +37,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     func getLocation(){
         MapClient.getStudentInformation(completion: handleStudentLocationResponse(locations:error:))
     }
-
+    
     func handleStudentLocationResponse(locations: [StudentInformation], error: Error?){
         if !locations.isEmpty{
             for dictionary in locations{
@@ -96,7 +96,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-    
+        
         MapClient.logout { (success, error) in
             if success{
                 self.showLogout()

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class NewLocationMapVC: UIViewController, MKMapViewDelegate{
-
+    
     var location: MKPointAnnotation!
     var newLocation: StudentInformation!
     
@@ -32,7 +32,7 @@ class NewLocationMapVC: UIViewController, MKMapViewDelegate{
         }
         
     }
-
+    
     @IBAction func buttonPressed(_ sender: Any) {
         self.searchStatus(true)
         MapClient.postStudentLocation(postData: newLocation) { (data, error) in

@@ -22,10 +22,10 @@ extension UIViewController{
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                   DispatchQueue.main.async {
-                       self.dismiss(animated: true, completion: nil)
-                   }
-               }))
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }))
         DispatchQueue.main.async {
             self.present(alert,animated: true)
         }
