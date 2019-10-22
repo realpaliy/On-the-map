@@ -15,28 +15,29 @@ class AddNewLocationVC: UIViewController {
     @IBOutlet weak var searchButton: ButtonVC!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var urlText: UITextField!
-    @IBOutlet weak var firstNameTF: UITextField!
-    @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var locationTF: UITextField!
     
     let annotation = MKPointAnnotation()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
+    var firstName = ""
+    var lastName = ""
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
+        MapClient.getUserPublicInfo { (data, error) in
+            if let data = data {
+                self.firstName = data.firstName
+                self.lastName = data.lastName
+            }
+        }
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
         self.searchStatus(true)
         checkTF()
         let location = locationTF.text!
-        let name = "\(firstNameTF.text!) \(lastNameTF.text!)"
+        let name = "\(firstName) \(lastName)"
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location) { (placerMark, error) in
             if error != nil {
@@ -46,7 +47,7 @@ class AddNewLocationVC: UIViewController {
                 if let mark = placerMark?[0]{
                     self.annotation.coordinate = (mark.location?.coordinate)!
                     self.annotation.title = name
-                    let newLoc = StudentInformation(createdAt: "", firstName: self.firstNameTF.text!, lastName: self.lastNameTF.text!, latitude: mark.location!.coordinate.latitude, longitude: mark.location!.coordinate.longitude, mapString: location, mediaURL: self.urlText.text!, objectId: "PostedLocation.postedLocation.objectId", uniqueKey: MapClient.Auth.accountId, updatedAt: "")
+                    let newLoc = StudentInformation(createdAt: "", firstName: self.firstName, lastName: self.lastName, latitude: mark.location!.coordinate.latitude, longitude: mark.location!.coordinate.longitude, mapString: location, mediaURL: self.urlText.text!, objectId: "PostedLocation.postedLocation.objectId", uniqueKey: MapClient.Auth.accountId, updatedAt: "")
                     self.goToController(loc: newLoc, annot: self.annotation)
                 }
             }
@@ -70,13 +71,8 @@ class AddNewLocationVC: UIViewController {
     }
     
     func checkTF() {
-        if firstNameTF.text!.isEmpty{
-            showError("Error","Enter your first name")
-            searchStatus(false)
-        }else if lastNameTF.text!.isEmpty{
-            showError("Error","Enter your last name")
-            searchStatus(false)
-        }else if locationTF.text!.isEmpty{
+        
+        if locationTF.text!.isEmpty{
             showError("Error","Enter location")
             searchStatus(false)
         }else if urlText.text!.isEmpty || !UIApplication.shared.canOpenURL(URL(string: urlText.text!)!){
@@ -94,8 +90,6 @@ class AddNewLocationVC: UIViewController {
                 self.statusIndicator.stopAnimating()
             }
             self.searchButton.isEnabled = !status
-            self.firstNameTF.isEnabled = !status
-            self.lastNameTF.isEnabled = !status
             self.locationTF.isEnabled = !status
             self.urlText.isEnabled = !status
             self.cancelButton.isEnabled = !status

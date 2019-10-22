@@ -11,7 +11,8 @@
 		CB1C841E235953FF008EEEA0 /* NewLocationMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C841D235953FF008EEEA0 /* NewLocationMapVC.swift */; };
 		CB39A58B235CCA7200D053C8 /* TextFieldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB39A58A235CCA7200D053C8 /* TextFieldVC.swift */; };
 		CB39A58D235CCC3B00D053C8 /* ButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB39A58C235CCC3B00D053C8 /* ButtonVC.swift */; };
-		CB80FC90235B89270072F225 /* ShowErrorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC8F235B89270072F225 /* ShowErrorVC.swift */; };
+		CB62FB5D235F702C00B50028 /* UserPublicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB62FB5C235F702C00B50028 /* UserPublicInfo.swift */; };
+		CB80FC90235B89270072F225 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC8F235B89270072F225 /* UIViewController+Additions.swift */; };
 		CB80FC92235B9CAF0072F225 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC91235B9CAF0072F225 /* LogoutRequest.swift */; };
 		CB80FC94235BABA40072F225 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80FC93235BABA40072F225 /* StatusResponse.swift */; };
 		CB9B22332359162E0016DDB4 /* StudentLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B22322359162E0016DDB4 /* StudentLocationModel.swift */; };
@@ -38,7 +39,8 @@
 		CB1C841D235953FF008EEEA0 /* NewLocationMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationMapVC.swift; sourceTree = "<group>"; };
 		CB39A58A235CCA7200D053C8 /* TextFieldVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldVC.swift; sourceTree = "<group>"; };
 		CB39A58C235CCC3B00D053C8 /* ButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonVC.swift; sourceTree = "<group>"; };
-		CB80FC8F235B89270072F225 /* ShowErrorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowErrorVC.swift; sourceTree = "<group>"; };
+		CB62FB5C235F702C00B50028 /* UserPublicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPublicInfo.swift; sourceTree = "<group>"; };
+		CB80FC8F235B89270072F225 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		CB80FC91235B9CAF0072F225 /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		CB80FC93235BABA40072F225 /* StatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
 		CB9B22322359162E0016DDB4 /* StudentLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationModel.swift; sourceTree = "<group>"; };
@@ -157,7 +159,7 @@
 				CBF10FE223591490005E8439 /* MapVC.swift */,
 				CB1C841B23594085008EEEA0 /* AddNewLocationVC.swift */,
 				CB1C841D235953FF008EEEA0 /* NewLocationMapVC.swift */,
-				CB80FC8F235B89270072F225 /* ShowErrorVC.swift */,
+				CB80FC8F235B89270072F225 /* UIViewController+Additions.swift */,
 				CBB0F17E235E7B08007BC8EB /* SLListVC.swift */,
 			);
 			path = Controllers;
@@ -173,6 +175,7 @@
 				CBF10FDC235903CC005E8439 /* Session.swift */,
 				CBD8076F235A2EC900DC4FA1 /* PostStudentLocation.swift */,
 				CB80FC93235BABA40072F225 /* StatusResponse.swift */,
+				CB62FB5C235F702C00B50028 /* UserPublicInfo.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -257,7 +260,8 @@
 				CB80FC92235B9CAF0072F225 /* LogoutRequest.swift in Sources */,
 				CBB0F17F235E7B08007BC8EB /* SLListVC.swift in Sources */,
 				CB80FC94235BABA40072F225 /* StatusResponse.swift in Sources */,
-				CB80FC90235B89270072F225 /* ShowErrorVC.swift in Sources */,
+				CB62FB5D235F702C00B50028 /* UserPublicInfo.swift in Sources */,
+				CB80FC90235B89270072F225 /* UIViewController+Additions.swift in Sources */,
 				CBFFDF442357E309000C523F /* AppDelegate.swift in Sources */,
 				CBFFDF462357E309000C523F /* SceneDelegate.swift in Sources */,
 				CBF10FDB235903AD005E8439 /* Account.swift in Sources */,

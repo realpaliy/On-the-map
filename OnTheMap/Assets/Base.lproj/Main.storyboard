@@ -297,7 +297,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-wd-O6y" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="417" width="223" height="34"/>
+                                <rect key="frame" x="76" y="312" width="223" height="34"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -309,7 +309,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCC-fi-gt2" customClass="ButtonVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="110" y="535" width="156" height="41"/>
+                                <rect key="frame" x="110" y="430" width="156" height="41"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="0.049282962328767124" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="7xk-5Y-axm"/>
@@ -333,32 +333,8 @@
                                     <action selector="buttonPressed:" destination="ypi-8i-HFo" eventType="touchUpInside" id="D2u-Kd-hfH"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVC-ri-9vC" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="368" width="223" height="34"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="Name"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LxI-vv-jLF" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="319" width="223" height="34"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="Name"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6z-JD-Brz" customClass="TextFieldVC" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="76" y="466" width="223" height="34"/>
+                                <rect key="frame" x="76" y="361" width="223" height="34"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -389,7 +365,7 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="k4S-2c-3ny">
-                                <rect key="frame" x="177.66666666666666" y="508" width="19.666666666666657" height="20"/>
+                                <rect key="frame" x="177.66666666666652" y="402" width="19.666666666666657" height="20"/>
                                 <color key="color" red="0.0078431372550000003" green="0.70196078429999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -398,26 +374,20 @@
                             <constraint firstItem="roZ-e7-n2p" firstAttribute="trailing" secondItem="qhV-Du-d4m" secondAttribute="trailing" id="3GX-GQ-qPO"/>
                             <constraint firstItem="l6z-JD-Brz" firstAttribute="top" secondItem="TUM-wd-O6y" secondAttribute="bottom" constant="15" id="5wF-Zu-aQu"/>
                             <constraint firstItem="k4S-2c-3ny" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="177.66666666666666" id="6bL-sv-92S"/>
-                            <constraint firstItem="QVC-ri-9vC" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="76" id="7kA-A6-nLP"/>
-                            <constraint firstItem="LxI-vv-jLF" firstAttribute="top" secondItem="VVP-TU-cK4" secondAttribute="bottom" constant="25" id="8tO-GH-Qg6"/>
                             <constraint firstItem="roZ-e7-n2p" firstAttribute="top" secondItem="qhV-Du-d4m" secondAttribute="top" id="A9g-6E-H7d"/>
                             <constraint firstItem="l6z-JD-Brz" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="76" id="B3m-iH-xxM"/>
-                            <constraint firstItem="LxI-vv-jLF" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="76" id="HQZ-NC-OAd"/>
                             <constraint firstItem="RCC-fi-gt2" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="110" id="NyF-nY-DTT"/>
-                            <constraint firstItem="TUM-wd-O6y" firstAttribute="top" secondItem="QVC-ri-9vC" secondAttribute="bottom" constant="15" id="Usl-2k-Adl"/>
                             <constraint firstItem="VVP-TU-cK4" firstAttribute="top" secondItem="roZ-e7-n2p" secondAttribute="bottom" constant="66" id="VRj-h2-vr1"/>
                             <constraint firstItem="RCC-fi-gt2" firstAttribute="top" secondItem="l6z-JD-Brz" secondAttribute="bottom" constant="35" id="WOd-KO-zaT"/>
-                            <constraint firstItem="qhV-Du-d4m" firstAttribute="trailing" secondItem="LxI-vv-jLF" secondAttribute="trailing" constant="76" id="XrG-Vk-pho"/>
+                            <constraint firstItem="TUM-wd-O6y" firstAttribute="top" secondItem="VVP-TU-cK4" secondAttribute="bottom" constant="18" id="Xwi-mg-7h6"/>
                             <constraint firstItem="VVP-TU-cK4" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="87" id="bKT-Eg-n2Z"/>
-                            <constraint firstItem="qhV-Du-d4m" firstAttribute="trailing" secondItem="QVC-ri-9vC" secondAttribute="trailing" constant="76" id="byv-WH-OEk"/>
                             <constraint firstItem="qhV-Du-d4m" firstAttribute="trailing" secondItem="l6z-JD-Brz" secondAttribute="trailing" constant="76" id="oRi-ep-vN4"/>
                             <constraint firstItem="qhV-Du-d4m" firstAttribute="trailing" secondItem="VVP-TU-cK4" secondAttribute="trailing" constant="87" id="pLa-MC-orK"/>
-                            <constraint firstItem="RCC-fi-gt2" firstAttribute="top" secondItem="k4S-2c-3ny" secondAttribute="bottom" constant="7" id="pjS-uv-G9r"/>
+                            <constraint firstItem="RCC-fi-gt2" firstAttribute="top" secondItem="k4S-2c-3ny" secondAttribute="bottom" constant="8" id="pjS-uv-G9r"/>
                             <constraint firstItem="qhV-Du-d4m" firstAttribute="trailing" secondItem="TUM-wd-O6y" secondAttribute="trailing" constant="76" id="rD4-n9-rnU"/>
                             <constraint firstItem="TUM-wd-O6y" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" constant="76" id="rpC-5z-rIe"/>
                             <constraint firstItem="qhV-Du-d4m" firstAttribute="trailing" secondItem="RCC-fi-gt2" secondAttribute="trailing" constant="109" id="sAT-JK-0zL"/>
                             <constraint firstItem="k4S-2c-3ny" firstAttribute="centerX" secondItem="09W-Ci-ZIc" secondAttribute="centerX" id="ssA-oK-D63"/>
-                            <constraint firstItem="QVC-ri-9vC" firstAttribute="top" secondItem="LxI-vv-jLF" secondAttribute="bottom" constant="15" id="tdX-Z1-Cze"/>
                             <constraint firstItem="roZ-e7-n2p" firstAttribute="leading" secondItem="qhV-Du-d4m" secondAttribute="leading" id="zXM-qK-8L0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qhV-Du-d4m"/>
@@ -425,8 +395,6 @@
                     <navigationItem key="navigationItem" id="SnB-Id-4EH"/>
                     <connections>
                         <outlet property="cancelButton" destination="M6K-eN-Rb6" id="saj-WA-LfG"/>
-                        <outlet property="firstNameTF" destination="LxI-vv-jLF" id="RdH-mP-woE"/>
-                        <outlet property="lastNameTF" destination="QVC-ri-9vC" id="1kv-wh-sMU"/>
                         <outlet property="locationTF" destination="TUM-wd-O6y" id="8Bb-jR-6HI"/>
                         <outlet property="searchButton" destination="RCC-fi-gt2" id="ptP-d9-ztc"/>
                         <outlet property="statusIndicator" destination="k4S-2c-3ny" id="vjz-EJ-tjJ"/>
@@ -589,7 +557,6 @@
     </scenes>
     <resources>
         <image name="Location" width="50" height="50"/>
-        <image name="Name" width="50" height="50"/>
         <image name="WebURL" width="50" height="50"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="lock" width="50" height="50"/>

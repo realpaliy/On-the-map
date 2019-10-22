@@ -23,6 +23,7 @@ class MapClient {
         case getStudentInformation
         case postStudentLocation
         case logout
+        case getUserPublicInfo
         
         var stringValue: String{
             switch self {
@@ -30,7 +31,7 @@ class MapClient {
             case .getStudentInformation: return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
             case .postStudentLocation: return Endpoints.base + "/StudentLocation"
             case .logout: return Endpoints.base + "/session"
-                
+            case .getUserPublicInfo: return Endpoints.base + "/users/\(Auth.accountId)"
             }
         }
         
@@ -151,6 +152,18 @@ class MapClient {
                 completion(nil, error)
             }
         }
+    }
+    
+    class func getUserPublicInfo(completion: @escaping (UserPublicInfo?, Error?) -> Void){
+        
+        taskGetRequest(url: Endpoints.getUserPublicInfo.url, securityStatus: true, decodable: UserPublicInfo.self) { (response, error) in
+            if let response = response{
+                completion(response, nil)
+            }else{
+                completion(nil, error)
+            }
+        }
+        
     }
     
     class func logout(completion: @escaping (Bool, Error?) -> Void){
