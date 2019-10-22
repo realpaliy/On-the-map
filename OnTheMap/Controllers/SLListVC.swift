@@ -22,18 +22,17 @@ class SLListVC: UIViewController {
         tableStatus(true)
         tableView.delegate = self
         tableView.dataSource = self
-        MapClient.getStudentInformation { (students, error) in
-            self.students = students
-            self.tableStatus(false)
-            self.tableView.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
-        tableView.reloadData()
+        MapClient.getStudentInformation { (students, error) in
+            self.students = students
+            self.tableStatus(false)
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
