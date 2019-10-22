@@ -39,11 +39,16 @@ class AddNewLocationVC: UIViewController {
         let name = "\(firstNameTF.text!) \(lastNameTF.text!)"
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location) { (placerMark, error) in
-            if let mark = placerMark?[0]{
-                self.annotation.coordinate = (mark.location?.coordinate)!
-                self.annotation.title = name
-                let newLoc = StudentInformation(createdAt: "", firstName: self.firstNameTF.text!, lastName: self.lastNameTF.text!, latitude: mark.location!.coordinate.latitude, longitude: mark.location!.coordinate.longitude, mapString: location, mediaURL: self.urlText.text!, objectId: "PostedLocation.postedLocation.objectId", uniqueKey: MapClient.Auth.accountId, updatedAt: "")
-                self.goToController(loc: newLoc, annot: self.annotation)
+            if error != nil {
+                self.showError("Erorr", "Error happened while tried to find a location")
+                self.searchStatus(false)
+            }else{
+                if let mark = placerMark?[0]{
+                    self.annotation.coordinate = (mark.location?.coordinate)!
+                    self.annotation.title = name
+                    let newLoc = StudentInformation(createdAt: "", firstName: self.firstNameTF.text!, lastName: self.lastNameTF.text!, latitude: mark.location!.coordinate.latitude, longitude: mark.location!.coordinate.longitude, mapString: location, mediaURL: self.urlText.text!, objectId: "PostedLocation.postedLocation.objectId", uniqueKey: MapClient.Auth.accountId, updatedAt: "")
+                    self.goToController(loc: newLoc, annot: self.annotation)
+                }
             }
         }
         
