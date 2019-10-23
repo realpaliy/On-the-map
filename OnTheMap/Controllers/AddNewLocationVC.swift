@@ -47,7 +47,7 @@ class AddNewLocationVC: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        self.searchStatus(true)
+        searchStatus(true)
         checkTF()
         let location = locationTF.text!
         let name = "\(firstName) \(lastName)"
@@ -97,11 +97,7 @@ class AddNewLocationVC: UIViewController, UITextFieldDelegate{
     
     func searchStatus(_ status: Bool){
         DispatchQueue.main.async {
-            if status{
-                self.statusIndicator.startAnimating()
-            }else{
-                self.statusIndicator.stopAnimating()
-            }
+            status ? self.statusIndicator.startAnimating() : self.statusIndicator.stopAnimating()
             self.searchButton.isEnabled = !status
             self.locationTF.isEnabled = !status
             self.urlText.isEnabled = !status

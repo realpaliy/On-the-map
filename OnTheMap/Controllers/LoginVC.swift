@@ -42,7 +42,6 @@ class LoginVC: UIViewController, UITextFieldDelegate{
     
     func loginHandler(success: Bool, error: Error?){
         if success{
-            print(MapClient.Auth.accountId)
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginComplete", sender: nil)
             }
